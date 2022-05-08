@@ -11,16 +11,9 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  ValidateNested,
-  IsDate,
-  IsEnum,
-} from "class-validator";
+import { IsString, IsOptional, ValidateNested, IsDate } from "class-validator";
 import { DestinationWhereUniqueInput } from "../../destination/base/DestinationWhereUniqueInput";
 import { Type } from "class-transformer";
-import { EnumDrugName } from "./EnumDrugName";
 @InputType()
 class DrugCreateInput {
   @ApiProperty({
@@ -64,13 +57,5 @@ class DrugCreateInput {
   @Type(() => Date)
   @Field(() => Date)
   expire!: Date;
-
-  @ApiProperty({
-    required: true,
-    enum: EnumDrugName,
-  })
-  @IsEnum(EnumDrugName)
-  @Field(() => EnumDrugName)
-  name!: "Analgin" | "Hidroperit";
 }
 export { DrugCreateInput };

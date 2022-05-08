@@ -46,7 +46,6 @@ export const DestinationShow = (props: ShowProps): React.ReactElement => {
             <TextField label="dosage" source="dosage" />
             <TextField label="expire" source="expire" />
             <TextField label="ID" source="id" />
-            <TextField label="name" source="name" />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
         </ReferenceManyField>

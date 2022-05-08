@@ -5,5 +5,4 @@ export type DrugUpdateInput = {
   destination?: DestinationWhereUniqueInput | null;
   dosage?: string | null;
   expire?: Date;
-  name?: "Analgin" | "Hidroperit";
 };
