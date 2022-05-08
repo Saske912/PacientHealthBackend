@@ -16,7 +16,6 @@ const CREATE_INPUT = {
   dosage: "exampleDosage",
   expire: new Date(),
   id: "exampleId",
-  name: "exampleName",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
@@ -25,7 +24,6 @@ const CREATE_RESULT = {
   dosage: "exampleDosage",
   expire: new Date(),
   id: "exampleId",
-  name: "exampleName",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
@@ -35,7 +33,6 @@ const FIND_MANY_RESULT = [
     dosage: "exampleDosage",
     expire: new Date(),
     id: "exampleId",
-    name: "exampleName",
     updatedAt: new Date(),
   },
 ];
@@ -45,7 +42,6 @@ const FIND_ONE_RESULT = {
   dosage: "exampleDosage",
   expire: new Date(),
   id: "exampleId",
-  name: "exampleName",
   updatedAt: new Date(),
 };
 
