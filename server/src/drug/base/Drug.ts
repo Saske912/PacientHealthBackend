@@ -11,9 +11,16 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsString,
+  IsOptional,
+  ValidateNested,
+  IsEnum,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { Destination } from "../../destination/base/Destination";
+import { EnumDrugName } from "./EnumDrugName";
 @ObjectType()
 class Drug {
   @ApiProperty({
@@ -73,11 +80,17 @@ class Drug {
 
   @ApiProperty({
     required: true,
-    type: String,
+    enum: EnumDrugName,
+    isArray: true,
   })
-  @IsString()
-  @Field(() => String)
-  name!: string;
+  @IsEnum(EnumDrugName, {
+    each: true,
+  })
+  @IsOptional()
+  @Field(() => [EnumDrugName], {
+    nullable: true,
+  })
+  name?: Array<"Analgin" | "Hidroperit">;
 
   @ApiProperty({
     required: true,

@@ -42,13 +42,18 @@ model Destination {
 }
 
 model Drug {
-  createdAt     DateTime     @default(now())
+  createdAt     DateTime       @default(now())
   description   String?
-  destination   Destination? @relation(fields: [destinationId], references: [id])
+  destination   Destination?   @relation(fields: [destinationId], references: [id])
   destinationId String?
   dosage        String?
   expire        DateTime
-  id            String       @id @default(cuid())
-  name          String       @unique
-  updatedAt     DateTime     @updatedAt
+  id            String         @id @default(cuid())
+  name          EnumDrugName[]
+  updatedAt     DateTime       @updatedAt
+}
+
+enum EnumDrugName {
+  Analgin
+  Hidroperit
 }
