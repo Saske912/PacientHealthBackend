@@ -15,6 +15,7 @@ import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { DestinationWhereUniqueInput } from "../../destination/base/DestinationWhereUniqueInput";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { StringFilter } from "../../util/StringFilter";
 @InputType()
 class DrugWhereInput {
@@ -51,6 +52,17 @@ class DrugWhereInput {
     nullable: true,
   })
   dosage?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeFilter,
+  })
+  @Type(() => DateTimeFilter)
+  @IsOptional()
+  @Field(() => DateTimeFilter, {
+    nullable: true,
+  })
+  expire?: DateTimeFilter;
 
   @ApiProperty({
     required: false,

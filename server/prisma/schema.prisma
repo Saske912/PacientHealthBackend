@@ -47,6 +47,7 @@ model Drug {
   destination   Destination? @relation(fields: [destinationId], references: [id])
   destinationId String?
   dosage        String?
+  expire        DateTime
   id            String       @id @default(cuid())
   name          String       @unique
   updatedAt     DateTime     @updatedAt

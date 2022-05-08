@@ -5,6 +5,7 @@ export type Drug = {
   description: string | null;
   destination?: Destination | null;
   dosage: string | null;
+  expire: Date;
   id: string;
   name: string;
   updatedAt: Date;

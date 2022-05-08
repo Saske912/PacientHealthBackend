@@ -14,6 +14,7 @@ const CREATE_INPUT = {
   createdAt: new Date(),
   description: "exampleDescription",
   dosage: "exampleDosage",
+  expire: new Date(),
   id: "exampleId",
   name: "exampleName",
   updatedAt: new Date(),
@@ -22,6 +23,7 @@ const CREATE_RESULT = {
   createdAt: new Date(),
   description: "exampleDescription",
   dosage: "exampleDosage",
+  expire: new Date(),
   id: "exampleId",
   name: "exampleName",
   updatedAt: new Date(),
@@ -31,6 +33,7 @@ const FIND_MANY_RESULT = [
     createdAt: new Date(),
     description: "exampleDescription",
     dosage: "exampleDosage",
+    expire: new Date(),
     id: "exampleId",
     name: "exampleName",
     updatedAt: new Date(),
@@ -40,6 +43,7 @@ const FIND_ONE_RESULT = {
   createdAt: new Date(),
   description: "exampleDescription",
   dosage: "exampleDosage",
+  expire: new Date(),
   id: "exampleId",
   name: "exampleName",
   updatedAt: new Date(),
@@ -109,6 +113,7 @@ describe("Drug", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        expire: CREATE_RESULT.expire.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -121,6 +126,7 @@ describe("Drug", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
+          expire: FIND_MANY_RESULT[0].expire.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
@@ -144,6 +150,7 @@ describe("Drug", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
+        expire: FIND_ONE_RESULT.expire.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
