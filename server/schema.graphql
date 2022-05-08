@@ -1,0 +1,335 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Destination {
+  createdAt: DateTime!
+  doctor: User
+  drugs(orderBy: [DrugOrderByInput!], skip: Float, take: Float, where: DrugWhereInput): [Drug!]!
+  id: String!
+  pacient: Pacient
+  updatedAt: DateTime!
+}
+
+input DestinationCreateInput {
+  doctor: UserWhereUniqueInput
+  drugs: DrugCreateNestedManyWithoutDestinationsInput
+  pacient: PacientWhereUniqueInput
+}
+
+input DestinationCreateNestedManyWithoutPacientsInput {
+  connect: [DestinationWhereUniqueInput!]
+}
+
+input DestinationCreateNestedManyWithoutUsersInput {
+  connect: [DestinationWhereUniqueInput!]
+}
+
+input DestinationListRelationFilter {
+  every: DestinationWhereInput
+  none: DestinationWhereInput
+  some: DestinationWhereInput
+}
+
+input DestinationOrderByInput {
+  createdAt: SortOrder
+  doctorId: SortOrder
+  id: SortOrder
+  pacientId: SortOrder
+  updatedAt: SortOrder
+}
+
+input DestinationUpdateInput {
+  doctor: UserWhereUniqueInput
+  drugs: DrugUpdateManyWithoutDestinationsInput
+  pacient: PacientWhereUniqueInput
+}
+
+input DestinationUpdateManyWithoutPacientsInput {
+  connect: [DestinationWhereUniqueInput!]
+  disconnect: [DestinationWhereUniqueInput!]
+  set: [DestinationWhereUniqueInput!]
+}
+
+input DestinationUpdateManyWithoutUsersInput {
+  connect: [DestinationWhereUniqueInput!]
+  disconnect: [DestinationWhereUniqueInput!]
+  set: [DestinationWhereUniqueInput!]
+}
+
+input DestinationWhereInput {
+  doctor: UserWhereUniqueInput
+  drugs: DrugListRelationFilter
+  id: StringFilter
+  pacient: PacientWhereUniqueInput
+}
+
+input DestinationWhereUniqueInput {
+  id: String!
+}
+
+type Drug {
+  createdAt: DateTime!
+  description: String
+  destination: Destination
+  dosage: String
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input DrugCreateInput {
+  description: String
+  destination: DestinationWhereUniqueInput
+  dosage: String
+  name: String!
+}
+
+input DrugCreateNestedManyWithoutDestinationsInput {
+  connect: [DrugWhereUniqueInput!]
+}
+
+input DrugListRelationFilter {
+  every: DrugWhereInput
+  none: DrugWhereInput
+  some: DrugWhereInput
+}
+
+input DrugOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  destinationId: SortOrder
+  dosage: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input DrugUpdateInput {
+  description: String
+  destination: DestinationWhereUniqueInput
+  dosage: String
+  name: String
+}
+
+input DrugUpdateManyWithoutDestinationsInput {
+  connect: [DrugWhereUniqueInput!]
+  disconnect: [DrugWhereUniqueInput!]
+  set: [DrugWhereUniqueInput!]
+}
+
+input DrugWhereInput {
+  description: StringNullableFilter
+  destination: DestinationWhereUniqueInput
+  dosage: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+}
+
+input DrugWhereUniqueInput {
+  id: String!
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createDestination(data: DestinationCreateInput!): Destination!
+  createDrug(data: DrugCreateInput!): Drug!
+  createPacient(data: PacientCreateInput!): Pacient!
+  createUser(data: UserCreateInput!): User!
+  deleteDestination(where: DestinationWhereUniqueInput!): Destination!
+  deleteDrug(where: DrugWhereUniqueInput!): Drug!
+  deletePacient(where: PacientWhereUniqueInput!): Pacient!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateDestination(data: DestinationUpdateInput!, where: DestinationWhereUniqueInput!): Destination!
+  updateDrug(data: DrugUpdateInput!, where: DrugWhereUniqueInput!): Drug!
+  updatePacient(data: PacientUpdateInput!, where: PacientWhereUniqueInput!): Pacient!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Pacient {
+  createdAt: DateTime!
+  destinations(orderBy: [DestinationOrderByInput!], skip: Float, take: Float, where: DestinationWhereInput): [Destination!]!
+  doctor: User
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input PacientCreateInput {
+  destinations: DestinationCreateNestedManyWithoutPacientsInput
+  doctor: UserWhereUniqueInput
+  name: String!
+}
+
+input PacientCreateNestedManyWithoutUsersInput {
+  connect: [PacientWhereUniqueInput!]
+}
+
+input PacientListRelationFilter {
+  every: PacientWhereInput
+  none: PacientWhereInput
+  some: PacientWhereInput
+}
+
+input PacientOrderByInput {
+  createdAt: SortOrder
+  doctorId: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input PacientUpdateInput {
+  destinations: DestinationUpdateManyWithoutPacientsInput
+  doctor: UserWhereUniqueInput
+  name: String
+}
+
+input PacientUpdateManyWithoutUsersInput {
+  connect: [PacientWhereUniqueInput!]
+  disconnect: [PacientWhereUniqueInput!]
+  set: [PacientWhereUniqueInput!]
+}
+
+input PacientWhereInput {
+  destinations: DestinationListRelationFilter
+  doctor: UserWhereUniqueInput
+  id: StringFilter
+  name: StringFilter
+}
+
+input PacientWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _destinationsMeta(orderBy: [DestinationOrderByInput!], skip: Float, take: Float, where: DestinationWhereInput): MetaQueryPayload!
+  _drugsMeta(orderBy: [DrugOrderByInput!], skip: Float, take: Float, where: DrugWhereInput): MetaQueryPayload!
+  _pacientsMeta(orderBy: [PacientOrderByInput!], skip: Float, take: Float, where: PacientWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  destination(where: DestinationWhereUniqueInput!): Destination
+  destinations(orderBy: [DestinationOrderByInput!], skip: Float, take: Float, where: DestinationWhereInput): [Destination!]!
+  drug(where: DrugWhereUniqueInput!): Drug
+  drugs(orderBy: [DrugOrderByInput!], skip: Float, take: Float, where: DrugWhereInput): [Drug!]!
+  pacient(where: PacientWhereUniqueInput!): Pacient
+  pacients(orderBy: [PacientOrderByInput!], skip: Float, take: Float, where: PacientWhereInput): [Pacient!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  createdAt: DateTime!
+  destinations(orderBy: [DestinationOrderByInput!], skip: Float, take: Float, where: DestinationWhereInput): [Destination!]!
+  firstName: String
+  id: String!
+  lastName: String
+  pacients(orderBy: [PacientOrderByInput!], skip: Float, take: Float, where: PacientWhereInput): [Pacient!]!
+  roles: [String!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  destinations: DestinationCreateNestedManyWithoutUsersInput
+  firstName: String
+  lastName: String
+  pacients: PacientCreateNestedManyWithoutUsersInput
+  password: String!
+  roles: [String!]!
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  destinations: DestinationUpdateManyWithoutUsersInput
+  firstName: String
+  lastName: String
+  pacients: PacientUpdateManyWithoutUsersInput
+  password: String
+  roles: [String!]
+  username: String
+}
+
+input UserWhereInput {
+  destinations: DestinationListRelationFilter
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  pacients: PacientListRelationFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}

@@ -1,0 +1,53 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("POSTGRESQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt    DateTime      @default(now())
+  destinations Destination[]
+  firstName    String?
+  id           String        @id @default(cuid())
+  lastName     String?
+  pacients     Pacient[]
+  password     String
+  roles        String[]
+  updatedAt    DateTime      @updatedAt
+  username     String        @unique
+}
+
+model Pacient {
+  createdAt    DateTime      @default(now())
+  destinations Destination[]
+  doctor       User?         @relation(fields: [doctorId], references: [id])
+  doctorId     String?
+  id           String        @id @default(cuid())
+  name         String
+  updatedAt    DateTime      @updatedAt
+}
+
+model Destination {
+  createdAt DateTime @default(now())
+  doctor    User?    @relation(fields: [doctorId], references: [id])
+  doctorId  String?
+  drugs     Drug[]
+  id        String   @id @default(cuid())
+  pacient   Pacient? @relation(fields: [pacientId], references: [id])
+  pacientId String?
+  updatedAt DateTime @updatedAt
+}
+
+model Drug {
+  createdAt     DateTime     @default(now())
+  description   String?
+  destination   Destination? @relation(fields: [destinationId], references: [id])
+  destinationId String?
+  dosage        String?
+  id            String       @id @default(cuid())
+  name          String       @unique
+  updatedAt     DateTime     @updatedAt
+}
