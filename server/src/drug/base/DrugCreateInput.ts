@@ -68,15 +68,9 @@ class DrugCreateInput {
   @ApiProperty({
     required: true,
     enum: EnumDrugName,
-    isArray: true,
   })
-  @IsEnum(EnumDrugName, {
-    each: true,
-  })
-  @IsOptional()
-  @Field(() => [EnumDrugName], {
-    nullable: true,
-  })
-  name?: Array<"Analgin" | "Hidroperit">;
+  @IsEnum(EnumDrugName)
+  @Field(() => EnumDrugName)
+  name!: "Analgin" | "Hidroperit";
 }
 export { DrugCreateInput };

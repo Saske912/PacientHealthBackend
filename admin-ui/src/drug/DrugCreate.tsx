@@ -8,7 +8,6 @@ import {
   ReferenceInput,
   SelectInput,
   DateInput,
-  SelectArrayInput,
 } from "react-admin";
 
 import { DestinationTitle } from "../destination/DestinationTitle";
@@ -27,9 +26,9 @@ export const DrugCreate = (props: CreateProps): React.ReactElement => {
         </ReferenceInput>
         <TextInput label="dosage" source="dosage" />
         <DateInput label="expire" source="expire" />
-        <SelectArrayInput
-          label="name"
+        <SelectInput
           source="name"
+          label="name"
           choices={[
             { label: "analgin", value: "Analgin" },
             { label: "hidroperit", value: "Hidroperit" },

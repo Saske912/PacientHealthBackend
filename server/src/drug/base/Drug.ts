@@ -81,16 +81,12 @@ class Drug {
   @ApiProperty({
     required: true,
     enum: EnumDrugName,
-    isArray: true,
   })
-  @IsEnum(EnumDrugName, {
-    each: true,
-  })
-  @IsOptional()
-  @Field(() => [EnumDrugName], {
+  @IsEnum(EnumDrugName)
+  @Field(() => EnumDrugName, {
     nullable: true,
   })
-  name?: Array<"Analgin" | "Hidroperit">;
+  name?: "Analgin" | "Hidroperit";
 
   @ApiProperty({
     required: true,
