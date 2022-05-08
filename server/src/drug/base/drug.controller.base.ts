@@ -72,6 +72,7 @@ export class DrugControllerBase {
         },
 
         dosage: true,
+        expire: true,
         id: true,
         name: true,
         updatedAt: true,
@@ -109,6 +110,7 @@ export class DrugControllerBase {
         },
 
         dosage: true,
+        expire: true,
         id: true,
         name: true,
         updatedAt: true,
@@ -147,6 +149,7 @@ export class DrugControllerBase {
         },
 
         dosage: true,
+        expire: true,
         id: true,
         name: true,
         updatedAt: true,
@@ -202,6 +205,7 @@ export class DrugControllerBase {
           },
 
           dosage: true,
+          expire: true,
           id: true,
           name: true,
           updatedAt: true,
@@ -248,6 +252,7 @@ export class DrugControllerBase {
           },
 
           dosage: true,
+          expire: true,
           id: true,
           name: true,
           updatedAt: true,

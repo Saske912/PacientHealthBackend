@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
@@ -6,7 +7,9 @@ import {
   TextInput,
   ReferenceInput,
   SelectInput,
+  DateInput,
 } from "react-admin";
+
 import { DestinationTitle } from "../destination/DestinationTitle";
 
 export const DrugCreate = (props: CreateProps): React.ReactElement => {
@@ -22,6 +25,7 @@ export const DrugCreate = (props: CreateProps): React.ReactElement => {
           <SelectInput optionText={DestinationTitle} />
         </ReferenceInput>
         <TextInput label="dosage" source="dosage" />
+        <DateInput label="expire" source="expire" />
         <TextInput label="name" source="name" />
       </SimpleForm>
     </Create>

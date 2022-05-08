@@ -44,6 +44,7 @@ export const DestinationShow = (props: ShowProps): React.ReactElement => {
               <TextField source={DESTINATION_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="dosage" source="dosage" />
+            <TextField label="expire" source="expire" />
             <TextField label="ID" source="id" />
             <TextField label="name" source="name" />
             <DateField source="updatedAt" label="Updated At" />

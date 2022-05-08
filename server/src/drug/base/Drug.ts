@@ -57,6 +57,14 @@ class Drug {
 
   @ApiProperty({
     required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  expire!: Date;
+
+  @ApiProperty({
+    required: true,
     type: String,
   })
   @IsString()

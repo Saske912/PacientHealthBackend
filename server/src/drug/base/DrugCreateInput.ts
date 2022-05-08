@@ -11,7 +11,7 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested } from "class-validator";
+import { IsString, IsOptional, ValidateNested, IsDate } from "class-validator";
 import { DestinationWhereUniqueInput } from "../../destination/base/DestinationWhereUniqueInput";
 import { Type } from "class-transformer";
 @InputType()
@@ -49,6 +49,14 @@ class DrugCreateInput {
     nullable: true,
   })
   dosage?: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  expire!: Date;
 
   @ApiProperty({
     required: true,
