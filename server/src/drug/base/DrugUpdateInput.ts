@@ -71,15 +71,12 @@ class DrugUpdateInput {
   @ApiProperty({
     required: false,
     enum: EnumDrugName,
-    isArray: true,
   })
-  @IsEnum(EnumDrugName, {
-    each: true,
-  })
+  @IsEnum(EnumDrugName)
   @IsOptional()
-  @Field(() => [EnumDrugName], {
+  @Field(() => EnumDrugName, {
     nullable: true,
   })
-  name?: Array<"Analgin" | "Hidroperit">;
+  name?: "Analgin" | "Hidroperit";
 }
 export { DrugUpdateInput };
