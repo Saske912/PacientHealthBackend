@@ -13,7 +13,7 @@ import { registerEnumType } from "@nestjs/graphql";
 
 export enum EnumDrugName {
   Analgin = "Analgin",
-  Hidroperit = "Hidroperit",
+  Dimidrol = "Dimidrol",
 }
 
 registerEnumType(EnumDrugName, {

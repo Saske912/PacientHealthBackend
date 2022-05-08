@@ -26,6 +26,17 @@ export const DrugCreate = (props: CreateProps): React.ReactElement => {
         </ReferenceInput>
         <TextInput label="dosage" source="dosage" />
         <DateInput label="expire" source="expire" />
+        <SelectInput
+          source="name"
+          label="name"
+          choices={[
+            { label: "analgin", value: "Analgin" },
+            { label: "dimidrol", value: "Dimidrol" },
+          ]}
+          optionText="label"
+          allowEmpty
+          optionValue="value"
+        />
       </SimpleForm>
     </Create>
   );
