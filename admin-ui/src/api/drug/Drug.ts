@@ -7,6 +7,5 @@ export type Drug = {
   dosage: string | null;
   expire: Date;
   id: string;
-  name?: "Analgin" | "Hidroperit";
   updatedAt: Date;
 };

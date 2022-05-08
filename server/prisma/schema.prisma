@@ -49,11 +49,5 @@ model Drug {
   dosage        String?
   expire        DateTime
   id            String       @id @default(cuid())
-  name          EnumDrugName
   updatedAt     DateTime     @updatedAt
-}
-
-enum EnumDrugName {
-  Analgin
-  Hidroperit
 }

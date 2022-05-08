@@ -9,5 +9,4 @@ export type DrugWhereInput = {
   dosage?: StringNullableFilter;
   expire?: DateTimeFilter;
   id?: StringFilter;
-  name?: "Analgin" | "Hidroperit";
 };
