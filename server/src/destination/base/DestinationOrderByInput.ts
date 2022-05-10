@@ -52,7 +52,7 @@ class DestinationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  pacientId?: SortOrder;
+  updatedAt?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class DestinationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  updatedAt?: SortOrder;
+  pacientId?: SortOrder;
 }
 
 export { DestinationOrderByInput };

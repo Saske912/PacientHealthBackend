@@ -1,6 +1,6 @@
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
-import { SwaggerModule } from "@nestjs/swagger";
+import { OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 // @ts-ignore
 // eslint-disable-next-line
 import { AppModule } from "./app.module";
@@ -11,17 +11,11 @@ import {
   // @ts-ignore
   // eslint-disable-next-line
 } from "./swagger";
-import * as fs from "fs";
 
 const { PORT = 3000 } = process.env;
 
 async function main() {
-  const httpsOptions = {
-    key: fs.readFileSync(process.cwd() + '/keys/ssl/private.pem'),
-    cert: fs.readFileSync(process.cwd() + '/keys/ssl/public.pem'),
-    passphrase: 'pass',
-  };
-  const app = await NestFactory.create(AppModule, { cors: true, httpsOptions });
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   app.setGlobalPrefix("api");
   app.useGlobalPipes(
@@ -31,6 +25,18 @@ async function main() {
   );
 
   const document = SwaggerModule.createDocument(app, swaggerDocumentOptions);
+
+  /** check if there is Public decorator for each path (action) and its method (findMany / findOne) on each controller */
+  Object.values((document as OpenAPIObject).paths).forEach((path: any) => {
+    Object.values(path).forEach((method: any) => {
+      if (
+        Array.isArray(method.security) &&
+        method.security.includes("isPublic")
+      ) {
+        method.security = [];
+      }
+    });
+  });
 
   SwaggerModule.setup(swaggerPath, app, document, swaggerSetupOptions);
 

@@ -26,10 +26,14 @@ export const DestinationList = (props: ListProps): React.ReactElement => {
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="ID" source="id" />
-        <ReferenceField label="Pacient" source="pacient.id" reference="Pacient">
+        <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField
+          label="Назначение"
+          source="pacient.id"
+          reference="Pacient"
+        >
           <TextField source={PACIENT_TITLE_FIELD} />
         </ReferenceField>
-        <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>
   );

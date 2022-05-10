@@ -29,7 +29,11 @@ export const DestinationEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={DrugTitle} />
         </ReferenceArrayInput>
-        <ReferenceInput source="pacient.id" reference="Pacient" label="Pacient">
+        <ReferenceInput
+          source="pacient.id"
+          reference="Pacient"
+          label="Назначение"
+        >
           <SelectInput optionText={PacientTitle} />
         </ReferenceInput>
       </SimpleForm>

@@ -8,4 +8,5 @@ export type Drug = {
   expire: Date;
   id: string;
   updatedAt: Date;
+  name?: "Analgin" | "Dimidrol" | null;
 };
