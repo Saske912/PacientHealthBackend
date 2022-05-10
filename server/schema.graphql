@@ -96,6 +96,7 @@ type Drug {
   dosage: String
   expire: DateTime!
   id: String!
+  name: EnumDrugName
   updatedAt: DateTime!
 }
 
@@ -104,6 +105,7 @@ input DrugCreateInput {
   destination: DestinationWhereUniqueInput
   dosage: String
   expire: DateTime!
+  name: EnumDrugName
 }
 
 input DrugCreateNestedManyWithoutDestinationsInput {
@@ -123,6 +125,7 @@ input DrugOrderByInput {
   dosage: SortOrder
   expire: SortOrder
   id: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
@@ -131,6 +134,7 @@ input DrugUpdateInput {
   destination: DestinationWhereUniqueInput
   dosage: String
   expire: DateTime
+  name: EnumDrugName
 }
 
 input DrugUpdateManyWithoutDestinationsInput {
@@ -145,10 +149,16 @@ input DrugWhereInput {
   dosage: StringNullableFilter
   expire: DateTimeFilter
   id: StringFilter
+  name: EnumDrugName
 }
 
 input DrugWhereUniqueInput {
   id: String!
+}
+
+enum EnumDrugName {
+  Analgin
+  Dimidrol
 }
 
 type MetaQueryPayload {
