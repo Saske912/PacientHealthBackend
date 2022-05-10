@@ -11,18 +11,16 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
-import * as nestMorgan from "nest-morgan";
 import * as nestAccessControl from "nest-access-control";
 import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
-import * as abacUtil from "../../auth/abac.util";
 import { isRecordNotFoundError } from "../../prisma.util";
 import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
+import { DestinationService } from "../destination.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { DestinationService } from "../destination.service";
 import { DestinationCreateInput } from "./DestinationCreateInput";
 import { DestinationWhereInput } from "./DestinationWhereInput";
 import { DestinationWhereUniqueInput } from "./DestinationWhereUniqueInput";
@@ -33,24 +31,20 @@ import { DrugFindManyArgs } from "../../drug/base/DrugFindManyArgs";
 import { Drug } from "../../drug/base/Drug";
 import { DrugWhereUniqueInput } from "../../drug/base/DrugWhereUniqueInput";
 @swagger.ApiBearerAuth()
+@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class DestinationControllerBase {
   constructor(
     protected readonly service: DestinationService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Post()
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "create",
     possession: "any",
   })
+  @common.Post()
   @swagger.ApiCreatedResponse({ type: Destination })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(
@@ -94,18 +88,13 @@ export class DestinationControllerBase {
     });
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Get()
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "read",
     possession: "any",
   })
+  @common.Get()
   @swagger.ApiOkResponse({ type: [Destination] })
   @swagger.ApiForbiddenResponse()
   @ApiNestedQuery(DestinationFindManyArgs)
@@ -135,18 +124,13 @@ export class DestinationControllerBase {
     });
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Get("/:id")
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "read",
     possession: "own",
   })
+  @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Destination })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
@@ -183,18 +167,13 @@ export class DestinationControllerBase {
     return result;
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Patch("/:id")
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "update",
     possession: "any",
   })
+  @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Destination })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
@@ -250,17 +229,12 @@ export class DestinationControllerBase {
     }
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Delete("/:id")
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "delete",
     possession: "any",
   })
+  @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Destination })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
@@ -300,18 +274,13 @@ export class DestinationControllerBase {
     }
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Get("/:id/drugs")
   @nestAccessControl.UseRoles({
     resource: "Drug",
     action: "read",
     possession: "any",
   })
+  @common.Get("/:id/drugs")
   @ApiNestedQuery(DrugFindManyArgs)
   async findManyDrugs(
     @common.Req() request: Request,
@@ -333,6 +302,7 @@ export class DestinationControllerBase {
         dosage: true,
         expire: true,
         id: true,
+        name: true,
         updatedAt: true,
       },
     });
@@ -344,17 +314,12 @@ export class DestinationControllerBase {
     return results;
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Post("/:id/drugs")
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "update",
     possession: "any",
   })
+  @common.Post("/:id/drugs")
   async connectDrugs(
     @common.Param() params: DestinationWhereUniqueInput,
     @common.Body() body: DrugWhereUniqueInput[]
@@ -371,17 +336,12 @@ export class DestinationControllerBase {
     });
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Patch("/:id/drugs")
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "update",
     possession: "any",
   })
+  @common.Patch("/:id/drugs")
   async updateDrugs(
     @common.Param() params: DestinationWhereUniqueInput,
     @common.Body() body: DrugWhereUniqueInput[]
@@ -398,17 +358,12 @@ export class DestinationControllerBase {
     });
   }
 
-  @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(
-    defaultAuthGuard.DefaultAuthGuard,
-    nestAccessControl.ACGuard
-  )
-  @common.Delete("/:id/drugs")
   @nestAccessControl.UseRoles({
     resource: "Destination",
     action: "update",
     possession: "any",
   })
+  @common.Delete("/:id/drugs")
   async disconnectDrugs(
     @common.Param() params: DestinationWhereUniqueInput,
     @common.Body() body: DrugWhereUniqueInput[]

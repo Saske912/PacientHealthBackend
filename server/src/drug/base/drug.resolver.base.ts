@@ -15,12 +15,10 @@ import * as apollo from "apollo-server-express";
 import * as nestAccessControl from "nest-access-control";
 import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
-import * as gqlUserRoles from "../../auth/gqlUserRoles.decorator";
-import * as abacUtil from "../../auth/abac.util";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreateDrugArgs } from "./CreateDrugArgs";
 import { UpdateDrugArgs } from "./UpdateDrugArgs";
 import { DeleteDrugArgs } from "./DeleteDrugArgs";
@@ -91,7 +89,6 @@ export class DrugResolverBase {
     possession: "any",
   })
   async createDrug(@graphql.Args() args: CreateDrugArgs): Promise<Drug> {
-    // @ts-ignore
     return await this.service.create({
       ...args,
       data: {
@@ -113,12 +110,8 @@ export class DrugResolverBase {
     action: "update",
     possession: "any",
   })
-  async updateDrug(
-    @graphql.Args() args: UpdateDrugArgs,
-    @gqlUserRoles.UserRoles() userRoles: string[]
-  ): Promise<Drug | null> {
+  async updateDrug(@graphql.Args() args: UpdateDrugArgs): Promise<Drug | null> {
     try {
-      // @ts-ignore
       return await this.service.update({
         ...args,
         data: {
@@ -149,7 +142,6 @@ export class DrugResolverBase {
   })
   async deleteDrug(@graphql.Args() args: DeleteDrugArgs): Promise<Drug | null> {
     try {
-      // @ts-ignore
       return await this.service.delete(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
