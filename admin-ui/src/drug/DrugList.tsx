@@ -32,7 +32,6 @@ export const DrugList = (props: ListProps): React.ReactElement => {
         <TextField label="dosage" source="dosage" />
         <TextField label="expire" source="expire" />
         <TextField label="ID" source="id" />
-        <TextField label="name" source="name" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Препарат" source="name" />
       </Datagrid>
