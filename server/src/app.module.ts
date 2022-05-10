@@ -12,6 +12,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { GraphQLModule } from "@nestjs/graphql";
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 
 @Module({
   controllers: [],
@@ -36,8 +37,9 @@ import { GraphQLModule } from "@nestjs/graphql";
         return {
           autoSchemaFile: "schema.graphql",
           sortSchema: true,
-          playground,
+          playground: false,
           introspection: playground || introspection,
+          plugins: [ApolloServerPluginLandingPageLocalDefault()],
         };
       },
       inject: [ConfigService],
