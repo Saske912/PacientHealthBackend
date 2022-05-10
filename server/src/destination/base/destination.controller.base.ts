@@ -297,6 +297,7 @@ export class DestinationControllerBase {
         dosage: true,
         expire: true,
         id: true,
+        name: true,
         updatedAt: true,
         name: true,
       },

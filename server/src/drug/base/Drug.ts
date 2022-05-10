@@ -79,6 +79,17 @@ class Drug {
   id!: string;
 
   @ApiProperty({
+    required: false,
+    enum: EnumDrugName,
+  })
+  @IsEnum(EnumDrugName)
+  @IsOptional()
+  @Field(() => EnumDrugName, {
+    nullable: true,
+  })
+  name?: "Analgin" | "Dimidrol" | null;
+
+  @ApiProperty({
     required: true,
   })
   @IsDate()

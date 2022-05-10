@@ -7,6 +7,7 @@ export type DrugOrderByInput = {
   dosage?: SortOrder;
   expire?: SortOrder;
   id?: SortOrder;
+  name?: SortOrder;
   updatedAt?: SortOrder;
   name?: SortOrder;
 };
