@@ -9,4 +9,5 @@ export type DrugOrderByInput = {
   id?: SortOrder;
   name?: SortOrder;
   updatedAt?: SortOrder;
+  name?: SortOrder;
 };

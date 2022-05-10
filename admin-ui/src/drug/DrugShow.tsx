@@ -27,6 +27,7 @@ export const DrugShow = (props: ShowProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <TextField label="name" source="name" />
         <DateField source="updatedAt" label="Updated At" />
+        <TextField label="Препарат" source="name" />
       </SimpleShowLayout>
     </Show>
   );

@@ -12,6 +12,17 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
 type Destination {
   createdAt: DateTime!
   doctor: User
@@ -83,8 +94,8 @@ type Drug {
   description: String
   destination: Destination
   dosage: String
+  expire: DateTime!
   id: String!
-  name: String!
   updatedAt: DateTime!
 }
 
@@ -92,7 +103,7 @@ input DrugCreateInput {
   description: String
   destination: DestinationWhereUniqueInput
   dosage: String
-  name: String!
+  expire: DateTime!
 }
 
 input DrugCreateNestedManyWithoutDestinationsInput {
@@ -110,8 +121,8 @@ input DrugOrderByInput {
   description: SortOrder
   destinationId: SortOrder
   dosage: SortOrder
+  expire: SortOrder
   id: SortOrder
-  name: SortOrder
   updatedAt: SortOrder
 }
 
@@ -119,7 +130,7 @@ input DrugUpdateInput {
   description: String
   destination: DestinationWhereUniqueInput
   dosage: String
-  name: String
+  expire: DateTime
 }
 
 input DrugUpdateManyWithoutDestinationsInput {
@@ -132,8 +143,8 @@ input DrugWhereInput {
   description: StringNullableFilter
   destination: DestinationWhereUniqueInput
   dosage: StringNullableFilter
+  expire: DateTimeFilter
   id: StringFilter
-  name: StringFilter
 }
 
 input DrugWhereUniqueInput {

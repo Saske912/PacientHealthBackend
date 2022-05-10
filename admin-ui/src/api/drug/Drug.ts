@@ -9,4 +9,5 @@ export type Drug = {
   id: string;
   name?: "Analgin" | "Dimidrol" | null;
   updatedAt: Date;
+  name?: "Analgin" | "Dimidrol" | null;
 };

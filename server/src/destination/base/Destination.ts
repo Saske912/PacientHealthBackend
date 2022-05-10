@@ -53,6 +53,14 @@ class Destination {
   id!: string;
 
   @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updatedAt!: Date;
+
+  @ApiProperty({
     required: false,
     type: () => Pacient,
   })
@@ -60,13 +68,5 @@ class Destination {
   @Type(() => Pacient)
   @IsOptional()
   pacient?: Pacient | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updatedAt!: Date;
 }
 export { Destination };

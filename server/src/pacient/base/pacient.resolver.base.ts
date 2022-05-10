@@ -15,12 +15,10 @@ import * as apollo from "apollo-server-express";
 import * as nestAccessControl from "nest-access-control";
 import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
-import * as gqlUserRoles from "../../auth/gqlUserRoles.decorator";
-import * as abacUtil from "../../auth/abac.util";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreatePacientArgs } from "./CreatePacientArgs";
 import { UpdatePacientArgs } from "./UpdatePacientArgs";
 import { DeletePacientArgs } from "./DeletePacientArgs";
@@ -99,7 +97,6 @@ export class PacientResolverBase {
   async createPacient(
     @graphql.Args() args: CreatePacientArgs
   ): Promise<Pacient> {
-    // @ts-ignore
     return await this.service.create({
       ...args,
       data: {
@@ -122,11 +119,9 @@ export class PacientResolverBase {
     possession: "any",
   })
   async updatePacient(
-    @graphql.Args() args: UpdatePacientArgs,
-    @gqlUserRoles.UserRoles() userRoles: string[]
+    @graphql.Args() args: UpdatePacientArgs
   ): Promise<Pacient | null> {
     try {
-      // @ts-ignore
       return await this.service.update({
         ...args,
         data: {
@@ -159,7 +154,6 @@ export class PacientResolverBase {
     @graphql.Args() args: DeletePacientArgs
   ): Promise<Pacient | null> {
     try {
-      // @ts-ignore
       return await this.service.delete(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {
