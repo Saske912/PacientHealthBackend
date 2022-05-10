@@ -15,12 +15,10 @@ import * as apollo from "apollo-server-express";
 import * as nestAccessControl from "nest-access-control";
 import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
-import * as gqlUserRoles from "../../auth/gqlUserRoles.decorator";
-import * as abacUtil from "../../auth/abac.util";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreateDestinationArgs } from "./CreateDestinationArgs";
 import { UpdateDestinationArgs } from "./UpdateDestinationArgs";
 import { DeleteDestinationArgs } from "./DeleteDestinationArgs";
@@ -100,7 +98,6 @@ export class DestinationResolverBase {
   async createDestination(
     @graphql.Args() args: CreateDestinationArgs
   ): Promise<Destination> {
-    // @ts-ignore
     return await this.service.create({
       ...args,
       data: {
@@ -129,11 +126,9 @@ export class DestinationResolverBase {
     possession: "any",
   })
   async updateDestination(
-    @graphql.Args() args: UpdateDestinationArgs,
-    @gqlUserRoles.UserRoles() userRoles: string[]
+    @graphql.Args() args: UpdateDestinationArgs
   ): Promise<Destination | null> {
     try {
-      // @ts-ignore
       return await this.service.update({
         ...args,
         data: {
@@ -172,7 +167,6 @@ export class DestinationResolverBase {
     @graphql.Args() args: DeleteDestinationArgs
   ): Promise<Destination | null> {
     try {
-      // @ts-ignore
       return await this.service.delete(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {

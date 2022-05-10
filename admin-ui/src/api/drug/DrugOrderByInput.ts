@@ -8,4 +8,5 @@ export type DrugOrderByInput = {
   expire?: SortOrder;
   id?: SortOrder;
   updatedAt?: SortOrder;
+  name?: SortOrder;
 };

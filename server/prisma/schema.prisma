@@ -36,18 +36,24 @@ model Destination {
   doctorId  String?
   drugs     Drug[]
   id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
   pacient   Pacient? @relation(fields: [pacientId], references: [id])
   pacientId String?
-  updatedAt DateTime @updatedAt
 }
 
 model Drug {
-  createdAt     DateTime     @default(now())
+  createdAt     DateTime      @default(now())
   description   String?
-  destination   Destination? @relation(fields: [destinationId], references: [id])
+  destination   Destination?  @relation(fields: [destinationId], references: [id])
   destinationId String?
   dosage        String?
   expire        DateTime
-  id            String       @id @default(cuid())
-  updatedAt     DateTime     @updatedAt
+  id            String        @id @default(cuid())
+  updatedAt     DateTime      @updatedAt
+  name          EnumDrugName?
+}
+
+enum EnumDrugName {
+  Analgin
+  Dimidrol
 }

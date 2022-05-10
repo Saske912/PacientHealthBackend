@@ -7,6 +7,6 @@ export type Destination = {
   doctor?: User | null;
   drugs?: Array<Drug>;
   id: string;
-  pacient?: Pacient | null;
   updatedAt: Date;
+  pacient?: Pacient | null;
 };
