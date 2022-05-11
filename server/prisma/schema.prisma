@@ -31,14 +31,14 @@ model Pacient {
 }
 
 model Destination {
-  createdAt DateTime @default(now())
-  doctor    User?    @relation(fields: [doctorId], references: [id])
-  doctorId  String?
-  drugs     Drug[]
-  id        String   @id @default(cuid())
-  updatedAt DateTime @updatedAt
-  pacient   Pacient? @relation(fields: [pacientId], references: [id])
-  pacientId String?
+  createdAt     DateTime @default(now())
+  destination   Pacient? @relation(fields: [destinationId], references: [id])
+  destinationId String?
+  doctor        User?    @relation(fields: [doctorId], references: [id])
+  doctorId      String?
+  drugs         Drug[]
+  id            String   @id @default(cuid())
+  updatedAt     DateTime @updatedAt
 }
 
 model Drug {
@@ -47,10 +47,10 @@ model Drug {
   destination   Destination?  @relation(fields: [destinationId], references: [id])
   destinationId String?
   dosage        String?
+  name          EnumDrugName?
   expire        DateTime
   id            String        @id @default(cuid())
   updatedAt     DateTime      @updatedAt
-  name          EnumDrugName?
 }
 
 enum EnumDrugName {

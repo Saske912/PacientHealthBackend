@@ -8,8 +8,8 @@ import {
   TextField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { USER_TITLE_FIELD } from "../user/UserTitle";
 import { PACIENT_TITLE_FIELD } from "../pacient/PacientTitle";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const DestinationList = (props: ListProps): React.ReactElement => {
   return (
@@ -22,18 +22,18 @@ export const DestinationList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <DateField source="createdAt" label="Created At" />
-        <ReferenceField label="Doctor" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
-        <TextField label="ID" source="id" />
-        <DateField source="updatedAt" label="Updated At" />
         <ReferenceField
-          label="Назначение"
+          label="destination"
           source="pacient.id"
           reference="Pacient"
         >
           <TextField source={PACIENT_TITLE_FIELD} />
         </ReferenceField>
+        <ReferenceField label="Doctor" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
+        <TextField label="ID" source="id" />
+        <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>
   );

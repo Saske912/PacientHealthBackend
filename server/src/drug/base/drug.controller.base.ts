@@ -66,10 +66,10 @@ export class DrugControllerBase {
         },
 
         dosage: true,
+        name: true,
         expire: true,
         id: true,
         updatedAt: true,
-        name: true,
       },
     });
   }
@@ -99,10 +99,10 @@ export class DrugControllerBase {
         },
 
         dosage: true,
+        name: true,
         expire: true,
         id: true,
         updatedAt: true,
-        name: true,
       },
     });
   }
@@ -133,10 +133,10 @@ export class DrugControllerBase {
         },
 
         dosage: true,
+        name: true,
         expire: true,
         id: true,
         updatedAt: true,
-        name: true,
       },
     });
     if (result === null) {
@@ -184,10 +184,10 @@ export class DrugControllerBase {
           },
 
           dosage: true,
+          name: true,
           expire: true,
           id: true,
           updatedAt: true,
-          name: true,
         },
       });
     } catch (error) {
@@ -226,10 +226,10 @@ export class DrugControllerBase {
           },
 
           dosage: true,
+          name: true,
           expire: true,
           id: true,
           updatedAt: true,
-          name: true,
         },
       });
     } catch (error) {

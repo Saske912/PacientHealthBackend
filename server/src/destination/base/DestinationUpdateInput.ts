@@ -11,13 +11,25 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { PacientWhereUniqueInput } from "../../pacient/base/PacientWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { DrugUpdateManyWithoutDestinationsInput } from "./DrugUpdateManyWithoutDestinationsInput";
-import { PacientWhereUniqueInput } from "../../pacient/base/PacientWhereUniqueInput";
 @InputType()
 class DestinationUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: () => PacientWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => PacientWhereUniqueInput)
+  @IsOptional()
+  @Field(() => PacientWhereUniqueInput, {
+    nullable: true,
+  })
+  destination?: PacientWhereUniqueInput | null;
+
   @ApiProperty({
     required: false,
     type: () => UserWhereUniqueInput,
@@ -41,17 +53,5 @@ class DestinationUpdateInput {
     nullable: true,
   })
   drugs?: DrugUpdateManyWithoutDestinationsInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => PacientWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => PacientWhereUniqueInput)
-  @IsOptional()
-  @Field(() => PacientWhereUniqueInput, {
-    nullable: true,
-  })
-  pacient?: PacientWhereUniqueInput | null;
 }
 export { DestinationUpdateInput };

@@ -15,8 +15,8 @@ import {
   IsString,
   IsOptional,
   ValidateNested,
-  IsDate,
   IsEnum,
+  IsDate,
 } from "class-validator";
 import { DestinationWhereUniqueInput } from "../../destination/base/DestinationWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -59,17 +59,6 @@ class DrugUpdateInput {
 
   @ApiProperty({
     required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  expire?: Date;
-
-  @ApiProperty({
-    required: false,
     enum: EnumDrugName,
   })
   @IsEnum(EnumDrugName)
@@ -78,5 +67,16 @@ class DrugUpdateInput {
     nullable: true,
   })
   name?: "Analgin" | "Dimidrol" | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  expire?: Date;
 }
 export { DrugUpdateInput };

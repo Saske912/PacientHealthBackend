@@ -54,20 +54,26 @@ export class DestinationControllerBase {
       data: {
         ...data,
 
+        destination: data.destination
+          ? {
+              connect: data.destination,
+            }
+          : undefined,
+
         doctor: data.doctor
           ? {
               connect: data.doctor,
             }
           : undefined,
-
-        pacient: data.pacient
-          ? {
-              connect: data.pacient,
-            }
-          : undefined,
       },
       select: {
         createdAt: true,
+
+        destination: {
+          select: {
+            id: true,
+          },
+        },
 
         doctor: {
           select: {
@@ -77,12 +83,6 @@ export class DestinationControllerBase {
 
         id: true,
         updatedAt: true,
-
-        pacient: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -104,6 +104,12 @@ export class DestinationControllerBase {
       select: {
         createdAt: true,
 
+        destination: {
+          select: {
+            id: true,
+          },
+        },
+
         doctor: {
           select: {
             id: true,
@@ -112,12 +118,6 @@ export class DestinationControllerBase {
 
         id: true,
         updatedAt: true,
-
-        pacient: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -140,6 +140,12 @@ export class DestinationControllerBase {
       select: {
         createdAt: true,
 
+        destination: {
+          select: {
+            id: true,
+          },
+        },
+
         doctor: {
           select: {
             id: true,
@@ -148,12 +154,6 @@ export class DestinationControllerBase {
 
         id: true,
         updatedAt: true,
-
-        pacient: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -184,20 +184,26 @@ export class DestinationControllerBase {
         data: {
           ...data,
 
+          destination: data.destination
+            ? {
+                connect: data.destination,
+              }
+            : undefined,
+
           doctor: data.doctor
             ? {
                 connect: data.doctor,
               }
             : undefined,
-
-          pacient: data.pacient
-            ? {
-                connect: data.pacient,
-              }
-            : undefined,
         },
         select: {
           createdAt: true,
+
+          destination: {
+            select: {
+              id: true,
+            },
+          },
 
           doctor: {
             select: {
@@ -207,12 +213,6 @@ export class DestinationControllerBase {
 
           id: true,
           updatedAt: true,
-
-          pacient: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -243,6 +243,12 @@ export class DestinationControllerBase {
         select: {
           createdAt: true,
 
+          destination: {
+            select: {
+              id: true,
+            },
+          },
+
           doctor: {
             select: {
               id: true,
@@ -251,12 +257,6 @@ export class DestinationControllerBase {
 
           id: true,
           updatedAt: true,
-
-          pacient: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -295,10 +295,10 @@ export class DestinationControllerBase {
         },
 
         dosage: true,
+        name: true,
         expire: true,
         id: true,
         updatedAt: true,
-        name: true,
       },
     });
     if (results === null) {

@@ -10,14 +10,21 @@ import {
   SelectArrayInput,
 } from "react-admin";
 
+import { PacientTitle } from "../pacient/PacientTitle";
 import { UserTitle } from "../user/UserTitle";
 import { DrugTitle } from "../drug/DrugTitle";
-import { PacientTitle } from "../pacient/PacientTitle";
 
 export const DestinationCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <ReferenceInput
+          source="pacient.id"
+          reference="Pacient"
+          label="destination"
+        >
+          <SelectInput optionText={PacientTitle} />
+        </ReferenceInput>
         <ReferenceInput source="user.id" reference="User" label="Doctor">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
@@ -29,13 +36,6 @@ export const DestinationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={DrugTitle} />
         </ReferenceArrayInput>
-        <ReferenceInput
-          source="pacient.id"
-          reference="Pacient"
-          label="Назначение"
-        >
-          <SelectInput optionText={PacientTitle} />
-        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

@@ -34,6 +34,15 @@ class DestinationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  destinationId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   doctorId?: SortOrder;
 
   @ApiProperty({
@@ -53,15 +62,6 @@ class DestinationOrderByInput {
     nullable: true,
   })
   updatedAt?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  pacientId?: SortOrder;
 }
 
 export { DestinationOrderByInput };

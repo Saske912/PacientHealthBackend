@@ -7,7 +7,7 @@ export type DrugWhereInput = {
   description?: StringNullableFilter;
   destination?: DestinationWhereUniqueInput;
   dosage?: StringNullableFilter;
+  name?: "Analgin" | "Dimidrol";
   expire?: DateTimeFilter;
   id?: StringFilter;
-  name?: "Analgin" | "Dimidrol";
 };

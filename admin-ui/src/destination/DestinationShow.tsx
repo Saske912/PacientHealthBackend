@@ -12,26 +12,26 @@ import {
 } from "react-admin";
 
 import { DESTINATION_TITLE_FIELD } from "./DestinationTitle";
-import { USER_TITLE_FIELD } from "../user/UserTitle";
 import { PACIENT_TITLE_FIELD } from "../pacient/PacientTitle";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const DestinationShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
-        <ReferenceField label="Doctor" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
-        <TextField label="ID" source="id" />
-        <DateField source="updatedAt" label="Updated At" />
         <ReferenceField
-          label="Назначение"
+          label="destination"
           source="pacient.id"
           reference="Pacient"
         >
           <TextField source={PACIENT_TITLE_FIELD} />
         </ReferenceField>
+        <ReferenceField label="Doctor" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
+        <TextField label="ID" source="id" />
+        <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
           reference="Drug"
           target="DestinationId"
@@ -48,10 +48,10 @@ export const DestinationShow = (props: ShowProps): React.ReactElement => {
               <TextField source={DESTINATION_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="dosage" source="dosage" />
+            <TextField label="Drug" source="name" />
             <TextField label="expire" source="expire" />
             <TextField label="ID" source="id" />
             <DateField source="updatedAt" label="Updated At" />
-            <TextField label="Препарат" source="name" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

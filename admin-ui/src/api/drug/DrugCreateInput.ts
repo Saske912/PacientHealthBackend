@@ -4,6 +4,6 @@ export type DrugCreateInput = {
   description?: string | null;
   destination?: DestinationWhereUniqueInput | null;
   dosage?: string | null;
-  expire: Date;
   name?: "Analgin" | "Dimidrol" | null;
+  expire: Date;
 };
