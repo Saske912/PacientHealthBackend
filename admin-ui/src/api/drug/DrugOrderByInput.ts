@@ -5,6 +5,7 @@ export type DrugOrderByInput = {
   description?: SortOrder;
   destinationId?: SortOrder;
   dosage?: SortOrder;
+  name?: SortOrder;
   expire?: SortOrder;
   id?: SortOrder;
   updatedAt?: SortOrder;

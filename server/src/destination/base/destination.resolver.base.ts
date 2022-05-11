@@ -27,8 +27,8 @@ import { DestinationFindUniqueArgs } from "./DestinationFindUniqueArgs";
 import { Destination } from "./Destination";
 import { DrugFindManyArgs } from "../../drug/base/DrugFindManyArgs";
 import { Drug } from "../../drug/base/Drug";
-import { User } from "../../user/base/User";
 import { Pacient } from "../../pacient/base/Pacient";
+import { User } from "../../user/base/User";
 import { DestinationService } from "../destination.service";
 
 @graphql.Resolver(() => Destination)
@@ -103,15 +103,15 @@ export class DestinationResolverBase {
       data: {
         ...args.data,
 
-        doctor: args.data.doctor
+        destination: args.data.destination
           ? {
-              connect: args.data.doctor,
+              connect: args.data.destination,
             }
           : undefined,
 
-        pacient: args.data.pacient
+        doctor: args.data.doctor
           ? {
-              connect: args.data.pacient,
+              connect: args.data.doctor,
             }
           : undefined,
       },
@@ -134,15 +134,15 @@ export class DestinationResolverBase {
         data: {
           ...args.data,
 
-          doctor: args.data.doctor
+          destination: args.data.destination
             ? {
-                connect: args.data.doctor,
+                connect: args.data.destination,
               }
             : undefined,
 
-          pacient: args.data.pacient
+          doctor: args.data.doctor
             ? {
-                connect: args.data.pacient,
+                connect: args.data.doctor,
               }
             : undefined,
         },
@@ -199,14 +199,16 @@ export class DestinationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
+  @graphql.ResolveField(() => Pacient, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Pacient",
     action: "read",
     possession: "any",
   })
-  async doctor(@graphql.Parent() parent: Destination): Promise<User | null> {
-    const result = await this.service.getDoctor(parent.id);
+  async destination(
+    @graphql.Parent() parent: Destination
+  ): Promise<Pacient | null> {
+    const result = await this.service.getDestination(parent.id);
 
     if (!result) {
       return null;
@@ -215,16 +217,14 @@ export class DestinationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Pacient, { nullable: true })
+  @graphql.ResolveField(() => User, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Pacient",
+    resource: "User",
     action: "read",
     possession: "any",
   })
-  async pacient(
-    @graphql.Parent() parent: Destination
-  ): Promise<Pacient | null> {
-    const result = await this.service.getPacient(parent.id);
+  async doctor(@graphql.Parent() parent: Destination): Promise<User | null> {
+    const result = await this.service.getDoctor(parent.id);
 
     if (!result) {
       return null;

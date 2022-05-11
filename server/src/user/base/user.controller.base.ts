@@ -215,6 +215,12 @@ export class UserControllerBase {
       select: {
         createdAt: true,
 
+        destination: {
+          select: {
+            id: true,
+          },
+        },
+
         doctor: {
           select: {
             id: true,
@@ -223,12 +229,6 @@ export class UserControllerBase {
 
         id: true,
         updatedAt: true,
-
-        pacient: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {

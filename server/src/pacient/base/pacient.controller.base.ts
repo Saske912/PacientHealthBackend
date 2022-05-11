@@ -248,6 +248,12 @@ export class PacientControllerBase {
       select: {
         createdAt: true,
 
+        destination: {
+          select: {
+            id: true,
+          },
+        },
+
         doctor: {
           select: {
             id: true,
@@ -256,12 +262,6 @@ export class PacientControllerBase {
 
         id: true,
         updatedAt: true,
-
-        pacient: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
